@@ -1,4 +1,6 @@
 import axios from "axios";
+import { useAppDispatch } from "../store/hooks";
+import { openDeleteModal } from "../store/slices/deleteModalSlice";
 
 interface DeleteItemButtonProps {
   itemId: string; // ID of the item to delete
@@ -6,19 +8,13 @@ interface DeleteItemButtonProps {
 }
 
 export const DeleteItemButton = ({ itemId, onDelete }: DeleteItemButtonProps) => {
-  const backendURL = import.meta.env.VITE_BACKEND_URL 
+  const backendURL = import.meta.env.VITE_BACKEND_URL;
+  const dispatch = useAppDispatch();
 
-  const handleClick = async () => {
-    try {
-      const response = await axios.delete(`${backendURL}/api/items/${itemId}`);
-    //   remove after testing 
-      console.log("Item deleted:", response.data);
+  const handleClick = () => {
 
-      // Call onDelete function to update UI (e.g., remove item from state)
-      onDelete(itemId);
-    } catch (error) {
-      console.error("Error deleting item:", error);
-    }
+    console.log("Delete button clicked!");
+    dispatch(openDeleteModal());
   };
 
   return (
