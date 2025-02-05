@@ -1,9 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
-import createItemFormReducer from "./slices/createItemFormSlice"; 
+import createItemFormReducer from "./slices/createItemFormSlice";
+import itemDetailsReducer from "./slices/itemDetailsSlice";
+import deleteModalReducer from "./slices/deleteModalSlice"; 
 
 export const store = configureStore({
   reducer: {
-    createItemForm: createItemFormReducer, // ✅ Add slice reducer
+    createItemForm: createItemFormReducer,
+    itemDetails: itemDetailsReducer, 
+    deleteModal: deleteModalReducer,
   },
 });
 
