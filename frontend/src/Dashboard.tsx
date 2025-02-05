@@ -1,8 +1,8 @@
-// src/Dashboard.tsx
-import { ProductCard } from "./Components/ProductCard";
 import { CreateItemButton } from "./Components/CreateItemButton";
-import { ProductForm } from "./Components/ProductForm";
-
+import { CreateItemForm } from "./Components/CreateItemForm";
+import { DeleteConfirmationModal } from "./Components/DeleteConfirmationModal";
+// import { ItemDisplayContainer } from "./Components/ItemDisplayContainer";
+import { ItemCard } from "./Components/ItemCard";
 
 export const Dashboard = () => {
   return (
@@ -13,10 +13,22 @@ export const Dashboard = () => {
       </header>
 
       {/* Main Content Area */}
-      <main className="p-6">
-        <CreateItemButton/>
-        <ProductCard/>
-        <ProductForm/>
+      <main className="mainContainer p-6 flex flex-col">
+        <div className="bg-amber-200 flex justify-end  my-2">
+          <CreateItemButton />
+        </div>
+        
+        {/* will only appear if state is True. */}
+        <CreateItemForm />
+        <DeleteConfirmationModal />
+        <h2>All Items:</h2>
+       {/* place item container below  */}
+       {/* <ItemDisplayContainer/> */}
+       <ItemCard
+            itemName="Test Product"
+            description="This is a sample description."
+            price={49.99}
+          />
       </main>
     </div>
   );
