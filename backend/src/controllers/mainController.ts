@@ -57,12 +57,29 @@ exports.getAllItems = async(req: typeof Request, res: typeof Response)=>{
 
 
 // get item by id 
-// exports.getItemById = async(req: typeof Req, res: typeof Res)=>{
+exports.getItemById = async(req: typeof Request, res: typeof Response)=>{
+    try {
+        const { id } = req.params; // ✅ Extract ID from request parameters
 
-// }
+        const item = await Item.findByPk(id);
+
+        if (!item) {
+            return res.status(404).json({ message: "Item not found" });
+        }
+
+        res.status(200).json({
+            message: "Item retrieved successfully!",
+            item,
+        });
+
+    } catch (error) {
+        console.error("Error fetching item:", error);
+        res.status(500).json({ message: "Internal Server Error" });
+    }
+}
 
 // //need id 
-// exports.updateItem = async(req: typeof Req, res: typeof Res)=>{
+// exports.updateItem = async(req: typeof Request, res: typeof Response)=>{
     
 // }
 
