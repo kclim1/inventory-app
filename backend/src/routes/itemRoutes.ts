@@ -25,7 +25,7 @@ router.get('/:id', mainController.getItemById);
 router.put('/:id',validateItem, mainController.updateItem);
 
 // //delete '/:id' delete item by id 
-// router.delete('/:id', mainController.deleteItem);
+router.delete('/:id', mainController.deleteItem);
 
 
 module.exports = router 

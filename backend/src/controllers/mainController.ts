@@ -1,11 +1,10 @@
 export {}
-const axios = require('axios')
 const Item = require('../models/itemModels'); 
 const {validationResult } = require('express-validator')
 const { Request, Response } = require('express');
 
 
-interface CreateItemInterface {
+interface ItemInterface {
     itemName: string;
     description?: string;
     price: number;
@@ -19,12 +18,12 @@ exports.createItem = async (req: typeof Request, res: typeof Response) => {
             return res.status(400).json({ errors: errors.array() });
         }
 
-        const { itemName, description, price }: CreateItemInterface = req.body;
+        const { itemName, description, price }: ItemInterface = req.body;
 
         const newItem = await Item.create({
             itemName,
             description,
-            price: Number(price),
+            price: Number(price).toFixed(2),
         });
         console.log('item created!')
         res.status(201).json({
@@ -39,7 +38,7 @@ exports.createItem = async (req: typeof Request, res: typeof Response) => {
 };
 
 
-// get all items for display in items list 
+// get all items to display in items list 
 exports.getAllItems = async(req: typeof Request, res: typeof Response)=>{
     try {
         const items = await Item.findAll();
@@ -78,7 +77,7 @@ exports.getItemById = async(req: typeof Request, res: typeof Response)=>{
     }
 }
 
-// //need id 
+// update item with id 
 exports.updateItem = async(req: typeof Request, res: typeof Response)=>{
     try {
         const { id } = req.params; 
@@ -88,7 +87,7 @@ exports.updateItem = async(req: typeof Request, res: typeof Response)=>{
             return res.status(400).json({ errors: errors.array() });
         }
 
-        const { itemName, description, price }: CreateItemInterface = req.body;
+        const { itemName, description, price }: ItemInterface = req.body;
 
             // pk = primary key
         const item = await Item.findByPk(id);
@@ -101,7 +100,7 @@ exports.updateItem = async(req: typeof Request, res: typeof Response)=>{
             // if itemName null/undefined then use item.itemName
             itemName: itemName ?? item.itemName,         
             description: description ?? item.description, 
-            price: price !== undefined ? Number(price) : item.price,
+            price: price !== undefined ? Number(price).toFixed(2) : item.price,
         });
 
         res.status(200).json({
@@ -116,6 +115,21 @@ exports.updateItem = async(req: typeof Request, res: typeof Response)=>{
 }
 
 // //need id 
-// exports.deleteItem = async(req: typeof Req, res: typeof Res)=>{
-    
-// }
+exports.deleteItem = async(req: typeof Request, res: typeof Response)=>{
+    try {
+        const { id } = req.params; 
+
+        const item = await Item.findByPk(id);
+        if (!item) {
+            return res.status(404).json({ message: "Item not found" });
+        }
+
+        await item.destroy();
+
+        res.status(200).json({ message: "Item deleted successfully!" });
+
+    } catch (error) {
+        console.error("Error deleting item:", error);
+        res.status(500).json({ message: "Internal Server Error" });
+    }
+}
