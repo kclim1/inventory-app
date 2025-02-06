@@ -14,7 +14,7 @@ export const Dashboard = () => {
 
       {/* Main Content Area */}
       <main className="mainContainer p-6 flex flex-col">
-        <div className="bg-amber-200 flex justify-end  my-2">
+        <div className="flex justify-end  my-2">
           <CreateItemButton />
         </div>
         
