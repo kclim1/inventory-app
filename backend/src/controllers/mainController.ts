@@ -79,9 +79,41 @@ exports.getItemById = async(req: typeof Request, res: typeof Response)=>{
 }
 
 // //need id 
-// exports.updateItem = async(req: typeof Request, res: typeof Response)=>{
-    
-// }
+exports.updateItem = async(req: typeof Request, res: typeof Response)=>{
+    try {
+        const { id } = req.params; 
+
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return res.status(400).json({ errors: errors.array() });
+        }
+
+        const { itemName, description, price }: CreateItemInterface = req.body;
+
+            // pk = primary key
+        const item = await Item.findByPk(id);
+
+        if (!item) {
+            return res.status(404).json({ message: "Item not found" });
+        }
+
+        await item.update({
+            // if itemName null/undefined then use item.itemName
+            itemName: itemName ?? item.itemName,         
+            description: description ?? item.description, 
+            price: price !== undefined ? Number(price) : item.price,
+        });
+
+        res.status(200).json({
+            message: "Item updated successfully!",
+            item,
+        });
+
+    } catch (error) {
+        console.error("Error updating item:", error);
+        res.status(500).json({ message: "Internal Server Error" });
+    }
+}
 
 // //need id 
 // exports.deleteItem = async(req: typeof Req, res: typeof Res)=>{
