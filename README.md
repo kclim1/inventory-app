@@ -7,7 +7,7 @@ This is a full-stack single page item management application built with React (V
 ## Getting Started 
 1. Run ``` git clone git@github.com:kclim1/arkmind-assessment.git```
 2. cd into arkmind-assessment
-3. Run ```npm install ``` 
+3. Run ```npm install ``` in the root folder
 <br>
 NOTE : Make sure you've also installed all dependencies in frontend and backend before using npm start in the root folder. Instructions on how to setup frontend and backend can be found in their respective folders.
 4. Run ```npm start```

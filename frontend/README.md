@@ -7,6 +7,8 @@
 - **TypeScript**: A superset of JavaScript that adds static typing.
 
 ## Setup Instructions:
-1. Clone the repository.
-2. Install dependencies: `npm install`
-3. Run the app: `npm run dev`
+1. Install dependencies: `npm install`
+2. Run the app: `npm run dev`
+
+NOTE : just set up the env file to contain this variable <br>
+```VITE_BACKEND_URL = "http://localhost:3000/api/items"```
