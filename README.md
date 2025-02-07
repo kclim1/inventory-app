@@ -75,3 +75,53 @@ Notifications: Sonner
 ## Preview of app 
 ![app preview](./public/image.png)
 
+## API ENDPOINTS 
+### Fetch all items
+```
+GET /api/items
+```
+Response: Returns a list of all items.
+<hr>
+
+### Create a new item
+```
+POST /api/items
+```
+sample body :
+```
+{
+  "itemName": "Item Name",
+  "description": "Item description",
+  "price": 100.99
+}
+```
+Response: Returns the created item.
+<hr>
+### Update an item
+```
+PUT /items/:id
+```
+```
+Body:
+{
+  "itemName": "Updated Name",
+  "description": "Updated description",
+  "price": 150.75
+}
+```
+Response: Returns the updated item.
+
+
+### Delete an item
+```
+DELETE /api/items/:id
+```
+Response: Confirms deletion of the item.
+<hr>
+
+
+## Known Issues / Future Enhancements 
+-Implement authentication (JWT/OAuth) <br>
+-Pagination for item list <br>
+-Can include quantity and automatically sums up price for that amount
+
