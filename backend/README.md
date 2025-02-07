@@ -2,7 +2,7 @@
 
 ## Getting Started
 1. npm install <br>
-NOTE: Ensure you have mysql installed and login to your account. Run command ```CREATE DATABASE arkmind_inventory;``` in terminal. After that the backend should handle the rest :D 
+NOTE: Ensure you have mysql installed and login to your account. Run command ```CREATE DATABASE arkmind_inventory;``` in terminal. After that the Sequelize ORM that's setup in the backend should handle the rest :D 
 3. To run the backend ```npm run dev ```
 
 ## Create env file in backend folder. 
