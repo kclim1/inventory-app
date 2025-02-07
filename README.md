@@ -9,9 +9,9 @@ This is a full-stack single page item management application built with React (V
 2. cd into arkmind-assessment
 3. Run ```npm install ``` in the root folder
 <br>
-NOTE : Make sure you've also installed all dependencies in frontend and backend before using npm start in the root folder. Instructions on how to setup frontend and backend can be found in their respective folders. Also ensure you alredy have mySQL installed. 
-4. Login to your mySQL and then 
-5. Run ```npm start```
+NOTE : Make sure you've also installed all dependencies in frontend and backend before using npm start in the root folder. Instructions on how to setup frontend and backend can be found in their respective folders. Also ensure you alredy have mySQL installed. <br>
+
+4. Run ```npm start```
 
 ## Tech Stack
 
