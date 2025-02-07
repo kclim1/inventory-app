@@ -7,10 +7,13 @@ const app = express();
 const PORT = process.env.PORT
 const itemRoutes = require('./routes/itemRoutes')
 const sequelize = require('./models/config')
+const cors = require("cors")
+
+
+app.use(cors());
 
 app.use(express.json()); 
 app.use(express.urlencoded({ extended: true })); 
-
 
 // Sync models with the database
 sequelize.sync({ force: false })  // Use 'force: true' only if you want to drop tables and recreate them

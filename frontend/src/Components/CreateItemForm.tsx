@@ -3,6 +3,7 @@ import axios from "axios";
 import { useAppDispatch, useAppSelector } from "../store/hooks";
 import { closeCreateItemForm } from "../store/slices/createItemFormSlice";
 import { clearItemDetails } from "../store/slices/itemDetailsSlice";
+import { toast } from "sonner";
 
 export const CreateItemForm = () => {
   const dispatch = useAppDispatch();
@@ -18,7 +19,6 @@ export const CreateItemForm = () => {
     if (!isOpen) return; // Prevent state updates when form is closed
 
     if (itemDetails.itemName) {
-      // ✅ Edit Mode: Prefill with itemDetails
       setItemName(itemDetails.itemName);
       setDescription(itemDetails.description);
       setPrice(itemDetails.price);
@@ -32,38 +32,49 @@ export const CreateItemForm = () => {
 
   if (!isOpen) return null; // Prevent rendering when modal is closed
 
-  const backendURL = import.meta.env.VITE_API_URL;
+  const backendURL = import.meta.env.VITE_BACKEND_URL ;
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const formData = { itemName, description, price: Number(price) };
-
+  
     try {
-      if (itemDetails.itemName) {
-        // ✅ Editing an existing item
-        await axios.put(`${backendURL}/api/items/${itemDetails.itemName}`, formData);
-        console.log("Item updated:", formData);
+      let response;
+      if (itemDetails.id) {
+        // ✅ Update existing item
+        console.log('put req for ' , itemDetails.id)
+        response = await axios.put(`${backendURL}/${itemDetails.id}`, formData);
       } else {
-        // ✅ Creating a new item
-        await axios.post(`${backendURL}/api/items`, formData);
-        console.log("New item created:", formData);
-      }
+        // ✅ Create new item
+        console.log('post req for ' , itemDetails.id)
 
-      // ✅ Reset local state
+        response = await axios.post(`${backendURL}`, formData);
+      }
+  
+      // ✅ Check if API response was successful
+      if (response.status === 200 || response.status === 201) {
+        toast.success(itemDetails.id ? "Item updated successfully!" : "Item created successfully!");
+//   use redux to store updated state 
+        
+      }
+  
+      // ✅ Reset local state & close modal
       setItemName("");
       setDescription("");
       setPrice("");
-
-      // ✅ Close modal & clear Redux state
+  
       dispatch(closeCreateItemForm());
       dispatch(clearItemDetails());
+  
     } catch (error) {
       console.error("Error submitting form:", error);
+      toast.error("Failed to submit form. Please try again.");
     }
   };
+  
 
   return (
-    <div className="fixed inset-0 bg-gray-500/75 transition-opacity flex justify-center items-center">
+    <div className="fixed inset-0 bg-gray-500/75 transition-opacity flex justify-center items-center z-50">
       <div className="bg-white shadow-md rounded-lg p-6 w-96">
         <h2 className="font-semibold text-xl mb-4">
           {itemDetails.itemName ? "Edit Item" : "Create Item"}
@@ -98,6 +109,7 @@ export const CreateItemForm = () => {
               type="number"
               value={price}
               min="0"
+              step="0.01"
               onChange={(e) => {
                 const value = Number(e.target.value);
                 if (value >= 0 || e.target.value === "") setPrice(value);

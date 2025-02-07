@@ -1,10 +1,13 @@
 import { CreateItemButton } from "./Components/CreateItemButton";
 import { CreateItemForm } from "./Components/CreateItemForm";
 import { DeleteConfirmationModal } from "./Components/DeleteConfirmationModal";
-// import { ItemDisplayContainer } from "./Components/ItemDisplayContainer";
-import { ItemCard } from "./Components/ItemCard";
+import { ItemDisplayContainer } from "./Components/ItemDisplayContainer";
+
 
 export const Dashboard = () => {
+
+
+
   return (
     <div className=" screenContainer bg-gray-50 min-h-screen">
       {/* Dashboard Header */}
@@ -23,12 +26,9 @@ export const Dashboard = () => {
         <DeleteConfirmationModal />
         <h2>All Items:</h2>
        {/* place item container below  */}
-       {/* <ItemDisplayContainer/> */}
-       <ItemCard
-            itemName="Test Product"
-            description="This is a sample description."
-            price={49.99}
-          />
+
+       <ItemDisplayContainer/>
+       
       </main>
     </div>
   );

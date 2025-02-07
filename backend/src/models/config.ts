@@ -1,13 +1,14 @@
 export {};
 const { Sequelize } = require('sequelize');
+const dotenv = require('dotenv').config
 
 const sequelize = new Sequelize({
   host: 'localhost', 
   port: 3306,        // default MySQL port
   dialect: 'mysql',  
-  database: 'arkmind_inventory', 
-  username: 'root',  
-  password: 'iamroot', 
+  database: process.env.DATABASE_NAME, 
+  username: process.env.USERNAME,  
+  password: process.env.PASSWORD, 
 });
 
 try {

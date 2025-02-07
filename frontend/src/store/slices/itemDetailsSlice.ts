@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface ItemDetailsState {
-  id:string;
+  id:number | null;
   itemName: string;
   description: string;
   price: number;
@@ -11,7 +11,7 @@ const initialState: ItemDetailsState = {
   itemName: "",
   description: "",
   price: 0,
-  id: ""
+  id: 0
 };
 
 const itemDetailsSlice = createSlice({
@@ -25,7 +25,7 @@ const itemDetailsSlice = createSlice({
       state.price = action.payload.price;
     },
     clearItemDetails: (state) => {
-      state.id = "" ;
+      state.id =  null;
       state.itemName = "";
       state.description = "";
       state.price = 0;
