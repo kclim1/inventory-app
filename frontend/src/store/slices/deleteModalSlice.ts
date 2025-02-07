@@ -2,12 +2,12 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface DeleteModalState {
   isOpen: boolean;
-  itemId: number | null; 
+  itemId: number | null;
 }
 
 const initialState: DeleteModalState = {
   isOpen: false,
-  itemId: null, 
+  itemId: null,
 };
 
 const deleteModalSlice = createSlice({
@@ -16,11 +16,11 @@ const deleteModalSlice = createSlice({
   reducers: {
     openDeleteModal: (state, action: PayloadAction<number>) => {
       state.isOpen = true;
-      state.itemId = action.payload; 
+      state.itemId = action.payload;
     },
     closeDeleteModal: (state) => {
       state.isOpen = false;
-      state.itemId = null; 
+      state.itemId = null;
     },
   },
 });
