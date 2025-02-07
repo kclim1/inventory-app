@@ -7,7 +7,7 @@ interface ItemInterface {
   price: number;
   id:number
 }
-
+//fix this to use redux state instead 
 export const useFetchAllItems = () => {
   const [items, setItems] = useState<ItemInterface[]>([]);
   const [error, setError] = useState<string | null>(null);
