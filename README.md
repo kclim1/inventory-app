@@ -100,7 +100,7 @@ Response: Returns the created item.
 
 ### Update an item
 ```
-PUT /items/:id
+PUT api/items/:id
 ```
 ```
 Body:
