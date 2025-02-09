@@ -1,12 +1,12 @@
-# Arkmind-assessment
+# Inventory-app
 
 ## Overview
 
 This is a full-stack single page item management application built with React (Vite), Redux Toolkit, TypeScript, Express.js, and MySQL. It allows users to create, view, edit, and delete items in real-time using Redux for state management.
 
 ## Getting Started 
-1. Run ``` git clone git@github.com:kclim1/arkmind-assessment.git```
-2. cd into arkmind-assessment
+1. Run ``` git clone git@github.com:kclim1/inventory-app.git```
+2. cd into inventory-app
 3. Run ```npm install ``` in the root folder
 <br>
 NOTE : Make sure you've also installed all dependencies in frontend and backend before using npm start in the root folder. Instructions on how to setup frontend and backend can be found in their respective folders. Also ensure you alredy have mySQL installed. <br>
@@ -27,7 +27,7 @@ Notifications: Sonner
 
 ## Folder Structure 
 ```
-📦 arkmind-assessment
+📦 inventory-app
 ├── backend
 │   ├── src
 │   │   ├── controllers

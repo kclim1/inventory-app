@@ -24,6 +24,7 @@ sequelize.sync({ force: false })  // Use 'force: true' only if you want to drop 
     console.error('Error syncing database:', error);
   });
 
+  console.log("Connected to database:", process.env.DATABASE_NAME);
 
 // appends / api/items to all routes
 app.use('/api/items',itemRoutes)
